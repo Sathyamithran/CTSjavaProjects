@@ -1,0 +1,28 @@
+used and checked till 21-05-2018
+git version:- 2.17.0-64-bit
+
+download the git version compatible for yours
+select your folder for you to upload in git.
+
+right click on it and click 'git bash'
+
+
+git init  --initialize the folder
+
+git status -- to view status
+
+git add .    -- add alll the files in current directory
+git commit -m   -- done few programs in git
+
+git remote add origin <url>
+
+git push origin master
+
+git push
+
+git push --force origin master 
+
+git pull --rebase
+
+--> again check status
+--> push
