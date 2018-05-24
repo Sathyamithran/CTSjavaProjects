@@ -10,7 +10,7 @@ public class EmployeeServiceImpl implements EmployeeService
 {
 
 	ArrayList<Employee> empdetails = new ArrayList<Employee>();
-	
+
 	
 	
 	@Override
@@ -67,26 +67,70 @@ public class EmployeeServiceImpl implements EmployeeService
 	@Override
 	public List<Employee> getAllEmployees() 
 	{
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																											return empdetails;
+		
+		return empdetails;
 	}
 
 	@Override
-	public List<Employee> getAllEmployees(int salary) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Employee> getAllEmployees(int salary) 
+	{
+		
+		ArrayList<Employee> empdetailssalary = new ArrayList<Employee>();
+		for(Employee emp:empdetails)
+		{
+			if(emp.getSalary()==salary)
+			{
+				empdetailssalary.add(emp);
+			}
+		}
+		return empdetailssalary;
 	}
+	
 
 	@Override
-	public List<Employee> getAllEmployees(int minSalary, int maxSalary) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Employee> getAllEmployees(int minSalary, int maxSalary) 
+	{
+		//ArrayList<Employee> employee = empdetails;
+		ArrayList<Employee> empdetailsminmax = new ArrayList<Employee>();
+		
+		for(Employee emp:empdetails)
+		{
+			if((emp.getSalary()>=minSalary)&&(emp.getSalary()<=maxSalary))
+			{
+				empdetailsminmax.add(emp); 
+			}
+		}
+
+		return empdetailsminmax;
 	}
 
+	
 	@Override
-	public void display(Employee emp) {
-		// TODO Auto-generated method stub
+	public void display(List<Employee> list) 
+	{
+		for(Employee emp: list)
+		{
+			
+			display(emp);
+		}
+	}
+	
+	
+	@Override
+	public void display(Employee emp) 
+	{
+		System.out.println(emp.getId());
+		System.out.println(emp.getName());
+		System.out.println(emp.getSalary());
 		
 	}
 	
-	
+	public void display()
+	{
+		for(Employee emp:empdetails)
+		{
+			display(emp);
+		}
+		
+	}
 }

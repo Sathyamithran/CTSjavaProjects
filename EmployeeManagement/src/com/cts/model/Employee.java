@@ -6,15 +6,17 @@ public class Employee
 		
 			private int id;
 			private String name;
-			public double salary;
+			public int salary;
+			public int department;
 			
 			//Constructors
-			public Employee(int id, String name, double salary) 
+			public Employee(int id, String name, int salary, int department) 
 			{
 				super();
 				this.id = id;
 				this.name = name;
 				this.salary = salary;
+				this.department = department;
 			}
 			
 			//getters and setters
@@ -34,14 +36,22 @@ public class Employee
 			{
 				this.name = name;
 			}
-			public double getSalary() 
+			public int getSalary() 
 			{
 				return salary;
 			}
-			public void setSalary(double salary) 
+			public void setSalary(int salary) 
 			{
 				this.salary = salary;
 			}
+			public int getDepartment() {
+				return department;
+			}
+
+			public void setDepartment(int department) {
+				this.department = department;
+			}
+
 
 			public void displayEmpProp()
 			{

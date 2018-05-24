@@ -4,6 +4,7 @@ public class MazeBox
 {
 	public void displayMazeBox(int size)
 	{
+		
 		System.out.print(" ");
 		for(int i=1;i<=size*2;i++)
 		{
