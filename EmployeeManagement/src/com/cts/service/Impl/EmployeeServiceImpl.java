@@ -11,46 +11,7 @@ public class EmployeeServiceImpl implements EmployeeService
 
 	ArrayList<Employee> empdetails = new ArrayList<Employee>();
 
-	
-	
-	@Override
-	public Boolean addEmployee(Employee emp) 
-	{
-		if(getEmployee(emp.getId())!=null)
-		{
-			return false;
-		}
-		empdetails.add(emp);
-
-		return true;
-	}
-
-	@Override
-	public Boolean deleteEmployee(int id) 
-	{
-		Employee emp1 = getEmployee(id);
-		if(emp1 != null)
-		{
-			empdetails.remove(emp1);
-		}
-
-		return null;
-	}
-
-	
-	@Override
-	public Boolean updateEmployee(Employee emp) 
-	{
-		if(getEmployee(emp.getId())==null)
-		{
-			return false;
-		}
-		empdetails.remove(emp.getId());
-		
-		empdetails.add(emp);
-		return true;
-	}
-
+	//getting the employee checking before into list 
 	@Override
 	public Employee getEmployee(int id) 
 	{
@@ -64,6 +25,51 @@ public class EmployeeServiceImpl implements EmployeeService
 		return null;
 	}
 
+	
+	//adding an employee the list
+	@Override
+	public Boolean addEmployee(Employee emp) 
+	{
+		if(getEmployee(emp.getId())!=null)
+		{
+			return false;
+		}
+		empdetails.add(emp);
+
+		return true;
+	}
+
+	//deleteing an employee in the list 
+	@Override
+	public Boolean deleteEmployee(int id) 
+	{
+		Employee emp1 = getEmployee(id);
+		if(emp1 != null)
+		{
+			empdetails.remove(emp1);
+		}
+
+		return null;
+	}
+
+	
+	
+	//update the employee in the list
+	@Override
+	public Boolean updateEmployee(Employee emp) 
+	{
+		if(getEmployee(emp.getId())==null)
+		{
+			return false;
+		}
+		empdetails.remove(emp.getId());
+		
+		empdetails.add(emp);
+		return true;
+	}
+
+
+	//get all the employee in the list
 	@Override
 	public List<Employee> getAllEmployees() 
 	{
@@ -71,6 +77,8 @@ public class EmployeeServiceImpl implements EmployeeService
 		return empdetails;
 	}
 
+	
+	//get all the employee list using the salary
 	@Override
 	public List<Employee> getAllEmployees(int salary) 
 	{
@@ -87,6 +95,7 @@ public class EmployeeServiceImpl implements EmployeeService
 	}
 	
 
+	//get all the employee list using the range of salary
 	@Override
 	public List<Employee> getAllEmployees(int minSalary, int maxSalary) 
 	{
@@ -105,6 +114,7 @@ public class EmployeeServiceImpl implements EmployeeService
 	}
 
 	
+	//display as object from passing the list
 	@Override
 	public void display(List<Employee> list) 
 	{
@@ -116,6 +126,7 @@ public class EmployeeServiceImpl implements EmployeeService
 	}
 	
 	
+	//display method
 	@Override
 	public void display(Employee emp) 
 	{
@@ -125,6 +136,7 @@ public class EmployeeServiceImpl implements EmployeeService
 		
 	}
 	
+	//display passing the object
 	public void display()
 	{
 		for(Employee emp:empdetails)

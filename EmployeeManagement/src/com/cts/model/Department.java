@@ -5,26 +5,38 @@ import java.util.List;
 
 public class Department 
 {
-	private int departmentId;
-	private String departmentname;
+	private int deptId;
+	private String deptname;
 	private Employee employee;
 	
+	
+
+	//constructor
+	public Department(int departmentId, String departmentname, Employee employee) 
+	{
+		super();
+		this.deptId = departmentId;
+		this.deptname = departmentname;
+		this.employee = employee;
+	}
+
+
 	//getter setter methods
 	public int getDepartmentId() 
 	{
-		return departmentId;
+		return deptId;
 	}
 	public void setDepartmentId(int departmentId) 
 	{
-		this.departmentId = departmentId;
+		this.deptId = departmentId;
 	}
 	public String getDepartmentname() 
 	{
-		return departmentname;
+		return deptname;
 	}
 	public void setDepartmentname(String departmentname) 
 	{
-		this.departmentname = departmentname;
+		this.deptname = departmentname;
 	}
 	public Employee getEmployee() 
 	{
@@ -36,16 +48,6 @@ public class Department
 	}
 	
 	
-	
-	//constructor
-	public Department(int departmentId, String departmentname, Employee employee) 
-	{
-		super();
-		this.departmentId = departmentId;
-		this.departmentname = departmentname;
-		this.employee = employee;
-	}
-
 	
 	
 }
