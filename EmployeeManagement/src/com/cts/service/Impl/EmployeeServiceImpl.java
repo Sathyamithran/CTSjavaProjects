@@ -126,6 +126,17 @@ public class EmployeeServiceImpl implements EmployeeService
 	}
 	
 	
+
+	//display passing the object
+	public void display()
+	{
+		for(Employee emp:empdetails)
+		{
+			display(emp);
+		}
+		
+	}
+	
 	//display method
 	@Override
 	public void display(Employee emp) 
@@ -136,13 +147,4 @@ public class EmployeeServiceImpl implements EmployeeService
 		
 	}
 	
-	//display passing the object
-	public void display()
-	{
-		for(Employee emp:empdetails)
-		{
-			display(emp);
-		}
-		
-	}
 }

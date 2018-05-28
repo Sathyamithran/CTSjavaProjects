@@ -16,8 +16,14 @@ public class DepartmentServiceImpl implements DepartmentService
 	@Override
 	public Department getDepartment(int id) 
 	{
-
-
+		for(Department dept:deptlist)
+		{
+			if(dept.getDepartmentId() == id)
+			{
+				return dept;
+			}
+		}
+		
 		return null;
 	}
 	
@@ -80,20 +86,8 @@ public class DepartmentServiceImpl implements DepartmentService
 		return null;
 	}
 
-	@Override
-	public void dislay() 
-	{
-	
-		
-	}
 
-	@Override
-	public void dislay(Department dept) 
-	{
 	
-		
-	}
-
 	@Override
 	public Boolean addEmployeeToDepartment(int empID, int deptID) 
 	{
@@ -108,6 +102,25 @@ public class DepartmentServiceImpl implements DepartmentService
 		return null;
 	}
 
+
+	@Override
+	public void display() 
+	{
+		for(Department dept:deptlist)
+		{
+			display(dept);
+		}
 		
+	}
+
+	
+	@Override
+	public void display(Department dept) 
+	{
+		System.out.println(dept.getDepartmentId());
+		System.out.println(dept.getDepartmentName());
+		
+		
+	}
 
 }

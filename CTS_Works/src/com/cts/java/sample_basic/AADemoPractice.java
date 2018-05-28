@@ -2,18 +2,40 @@ package com.cts.java.sample_basic;
 
 public class AADemoPractice 
 {
-	public static void main(String[] args) 
+	
+	RemoveCharAtPosition remove =new RemoveCharAtPosition();
+	
+	public String toGet(String data) 
 	{
-		String word = new String("Hello World");
-		String wo = new String("Hello World");
-		System.out.println(word == wo);
+		String data1 = data + "$$$";
+		String as ="";
+		char[] charsentance = data.toCharArray();
 		
-		String word1 = "Hello World";
-		String wo1 = "Hello World";
-		System.out.println(word1.equals(wo1));
+		for(int i=0;i<data.length()-1;i++)
+		{
+			if((data.charAt(i)==' ')&&(data.charAt(i+1)==' ')||(data.charAt(i)==' ')&&(data.charAt(i+1)!=' '))
+			{
+				
+				as += remove.removeChar(data, i);
+				
+			}
+			if((data.charAt(i)!=' ')&&(data.charAt(i+1)==' '))
+			{		
+				as += remove.removeChar(data, i);
+			}
+		}
 		
-		//it checks the memory location for checking the string in the memory....
-		//it creates a
+		for(int i=0;i<data1.length();i++)
+		{
+			if(data.charAt(i)=='$')
+			{
+				as+=remove.removeChar(data, i);				
+				
+			}
+		}
+		
+		return as;
+		
 	}
 
 }

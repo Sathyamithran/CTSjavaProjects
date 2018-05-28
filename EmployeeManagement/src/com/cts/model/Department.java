@@ -12,11 +12,11 @@ public class Department
 	
 
 	//constructor
-	public Department(int departmentId, String departmentname, Employee employee) 
+	public Department(int departmentId, String departmentName) 
 	{
 		super();
 		this.deptId = departmentId;
-		this.deptname = departmentname;
+		this.deptname = departmentName;
 		this.employee = employee;
 	}
 
@@ -30,13 +30,13 @@ public class Department
 	{
 		this.deptId = departmentId;
 	}
-	public String getDepartmentname() 
+	public String getDepartmentName() 
 	{
 		return deptname;
 	}
-	public void setDepartmentname(String departmentname) 
+	public void setDepartmentName(String departmentName) 
 	{
-		this.deptname = departmentname;
+		this.deptname = departmentName;
 	}
 	public Employee getEmployee() 
 	{

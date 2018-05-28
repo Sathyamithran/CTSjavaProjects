@@ -18,10 +18,12 @@ public interface DepartmentService
 		public List<Employee>  getAllEmployees(int deptID, int amount);
 		public List<Employee>  getAllEmployees(int deptID, int min, int max);
 		
-		public void dislay();
-		public void dislay(Department dept);
+		
+		public void display();
+		public void display(Department dept);
 		public Boolean addEmployeeToDepartment(int empID, int deptID);
 		public Boolean deleteEmployeeFromDepartment(int empID, int deptID);
+		
 		
 
 

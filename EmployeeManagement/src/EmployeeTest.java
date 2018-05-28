@@ -36,17 +36,18 @@ public class EmployeeTest
 		employee.addEmployee(candidate7);
 		employee.addEmployee(candidate8);
 		
+		
 		//display after adding employee
 		System.out.println("\nAfter adding the records");
 		employee.display();
 		
 		
-
-		
 		//delete the specific employee from the employee list
 		System.out.println("\nRemoving the a record in the list");
 		employee.deleteEmployee(3);
 		employee.display();
+		
+		
 		//readding the record 3 after deleteing
 		employee.addEmployee(candidate3);
 		
