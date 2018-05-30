@@ -19,7 +19,7 @@ public class EmployeeTest
 		Employee candidate6 = new Employee(6, "sarav", 5000, 101);
 		Employee candidate7 = new Employee(7, "shaz", 8000, 101);
 		Employee candidate8 = new Employee(8, "dil", 7000, 102);
-		
+		Employee candidate9 = new Employee(9, "xav", 9000, 101);
 		
 		//display before adding employee
 		System.out.println("Before adding the records\n");
@@ -35,7 +35,7 @@ public class EmployeeTest
 		employee.addEmployee(candidate6);
 		employee.addEmployee(candidate7);
 		employee.addEmployee(candidate8);
-		
+		employee.addEmployee(candidate9);
 		
 		//display after adding employee
 		System.out.println("\nAfter adding the records");

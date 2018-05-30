@@ -7,7 +7,7 @@ public class Employee
 			private int id;
 			private String name;
 			public int salary;
-			public int department;
+			public int departmentId;
 			
 			//Constructors
 			public Employee(int id, String name, int salary, int department) 
@@ -16,7 +16,7 @@ public class Employee
 				this.id = id;
 				this.name = name;
 				this.salary = salary;
-				this.department = department;
+				this.departmentId = department;
 			}
 			
 			//getters and setters
@@ -45,11 +45,11 @@ public class Employee
 				this.salary = salary;
 			}
 			public int getDepartment() {
-				return department;
+				return departmentId;
 			}
 
 			public void setDepartment(int department) {
-				this.department = department;
+				this.departmentId = department;
 			}
 
 

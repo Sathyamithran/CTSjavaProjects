@@ -12,6 +12,7 @@ public interface EmployeeService
 	
 	public Employee getEmployee(int id);
 	public List<Employee> getAllEmployees();
+	public List<Employee> getAllEmployeesByDept(int deptID);
 	public List<Employee> getAllEmployees(int salary);
 	public List<Employee> getAllEmployees(int minSalary, int maxSalary);
 	

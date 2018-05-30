@@ -1,13 +1,18 @@
 package com.cts.service.Impl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.cts.db.impl.DBConnection;
 import com.cts.model.Employee;
 import com.cts.service.EmployeeService;
 
 public class EmployeeServiceImpl implements EmployeeService 
-{
+{	Connection con;
+	PreparedStatement prepare;
 
 	ArrayList<Employee> empdetails = new ArrayList<Employee>();
 
@@ -35,7 +40,26 @@ public class EmployeeServiceImpl implements EmployeeService
 			return false;
 		}
 		empdetails.add(emp);
-
+		 
+		
+		con = DBConnection.getConnection();
+		try 
+		{
+			prepare = con.prepareStatement("insert into employee values (?,?,?,?)");
+			prepare.setInt(1, emp.getId());
+			prepare.setString(2, emp.getName());
+			prepare.setInt(3, emp.getSalary());
+			prepare.setInt(4, emp.getDepartment());
+			prepare.executeUpdate();
+			return true;
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return true;
 	}
 
@@ -43,12 +67,23 @@ public class EmployeeServiceImpl implements EmployeeService
 	@Override
 	public Boolean deleteEmployee(int id) 
 	{
-		Employee emp1 = getEmployee(id);
+		/*Employee emp1 = getEmployee(id);
 		if(emp1 != null)
 		{
 			empdetails.remove(emp1);
+		}*/
+		
+		try 
+		{
+			
+			prepare = con.prepareStatement("delete from employee where ");
+		
+		} 
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 		return null;
 	}
 
@@ -144,6 +179,22 @@ public class EmployeeServiceImpl implements EmployeeService
 		System.out.println(emp.getId());
 		System.out.println(emp.getName());
 		System.out.println(emp.getSalary());
+		
+	}
+
+
+	@Override
+	public List<Employee> getAllEmployeesByDept(int deptID) {
+		List<Employee> deptEmployees = new  ArrayList<Employee>();
+		for(Employee emp:empdetails)
+		{
+			if(emp.getDepartment()==deptID)
+			{
+				deptEmployees.add(emp);
+			}
+		}
+		return deptEmployees;
+
 		
 	}
 	

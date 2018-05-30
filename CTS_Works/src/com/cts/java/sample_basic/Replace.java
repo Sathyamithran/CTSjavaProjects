@@ -4,19 +4,19 @@ import java.util.Arrays;
 
 public class Replace 
 {
-	public String toReplace(String word,String characterplace ,String key)
+	public String toReplace(String word)
 	{
+		int i,k,j;
+		for(i=0;word.charAt(i)!=" ";i++);
 		
-		String wordString[] = {};
-		for(int i=0;i<word.length()-1;i++)
-		{
-			if(wordString[i]==characterplace)
-			{
-				wordString[i]="\000";
-			}
-		}
-		return wordString.toString();
+		return word;
 	}
 
 }
 
+/*for(i=0;str.charAt(i)!=" ";i++);
+ *for(j=l-1;str.charAt(j)!=" ";j--);
+ *char[]  
+ * 
+ * 
+ * */
