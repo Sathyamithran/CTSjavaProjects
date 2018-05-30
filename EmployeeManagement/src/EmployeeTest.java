@@ -27,41 +27,44 @@ public class EmployeeTest
 		
 		
 		//adding employee to the list
-		employee.addEmployee(candidate1);
-		employee.addEmployee(candidate2);
-		employee.addEmployee(candidate3);
-		employee.addEmployee(candidate4);
-		employee.addEmployee(candidate5);
-		employee.addEmployee(candidate6);
-		employee.addEmployee(candidate7);
-		employee.addEmployee(candidate8);
-		employee.addEmployee(candidate9);
+		//employee.addEmployee(candidate1);
+		//employee.addEmployee(candidate2);
+		//employee.addEmployee(candidate3);
+		//employee.addEmployee(candidate4);
+		//employee.addEmployee(candidate5);
+		//employee.addEmployee(candidate6);
+		//employee.addEmployee(candidate7);
+		//employee.addEmployee(candidate8);
+		//employee.addEmployee(candidate9);
 		
 		//display after adding employee
 		System.out.println("\nAfter adding the records");
-		employee.display();
+		//employee.display();
 		
 		
 		//delete the specific employee from the employee list
 		System.out.println("\nRemoving the a record in the list");
-		employee.deleteEmployee(3);
-		employee.display();
+		//employee.deleteEmployee(3);
+		//employee.display();
 		
 		
 		//readding the record 3 after deleteing
-		employee.addEmployee(candidate3);
+		//employee.addEmployee(candidate3);
 		
+		//update the record of the employee
+		employee.updateEmployee(candidate8);
+		employee.display();
 		
 		//display the all the employees according to salary
 		System.out.println("\nemployees according to salary");
 		List<Employee> listsalary = employee.getAllEmployees(2000);
 		employee.getAllEmployees(2000);
-		employee.display(listsalary);
+		//employee.display(listsalary);
 		
 		//display the all the employees with in the given range
 		List<Employee> list = employee.getAllEmployees(2000,4000);
 		System.out.println("\nemployees within the given minimum and maximum");
-		employee.display(list);
+		//employee.display(list);
 
 		
 		
