@@ -57,8 +57,8 @@ public class EmployeeTest
 		
 		//display the all the employees according to salary
 		System.out.println("\nemployees according to salary");
-		List<Employee> listsalary = employee.getAllEmployees(2000);
-		employee.getAllEmployees(2000);
+		//List<Employee> listsalary = employee.getAllEmployees(2000);
+		//employee.getAllEmployees(2000);
 		//employee.display(listsalary);
 		
 		//display the all the employees with in the given range
@@ -67,6 +67,17 @@ public class EmployeeTest
 		//employee.display(list);
 
 		
+		//--------------------------database-------------------------------------------
+		
+		//display the list in the database and printing it in the process
+		
+		EmployeeService employeeservice = new EmployeeServiceImpl();
+		Employee emp;
+		//List<Employee> emplist = employeeservice.getAllEmployees();
+		//employeeservice.display(emplist);
+		
+		List<Employee> emplistsalary = employeeservice.getAllEmployees(2000);
+		employeeservice.display(emplistsalary);
 		
 		
 	}

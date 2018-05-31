@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import com.cts.db.impl.DBConnection;
 import com.cts.model.Employee;
@@ -13,7 +16,7 @@ import com.cts.service.EmployeeService;
 public class EmployeeServiceDBImpl implements EmployeeService 
 {	Connection con;
 	PreparedStatement prepare;
-
+	
 	ArrayList<Employee> empdetails = new ArrayList<Employee>();
 
 	//getting the employee checking before into list 
@@ -35,13 +38,6 @@ public class EmployeeServiceDBImpl implements EmployeeService
 	@Override
 	public Boolean addEmployee(Employee emp) 
 	{
-		if(getEmployee(emp.getId())!=null)
-		{
-			return false;
-		}
-		empdetails.add(emp);
-		 
-		
 		con = DBConnection.getConnection();
 		try 
 		{
@@ -59,7 +55,6 @@ public class EmployeeServiceDBImpl implements EmployeeService
 			e.printStackTrace();
 		}
 		
-		
 		return true;
 	}
 
@@ -67,18 +62,14 @@ public class EmployeeServiceDBImpl implements EmployeeService
 	@Override
 	public Boolean deleteEmployee(int id) 
 	{
-		/*Employee emp1 = getEmployee(id);
-		if(emp1 != null)
-		{
-			empdetails.remove(emp1);
-		}*/
-		
 		try 
 		{
-			
+			con = DBConnection.getConnection();
+
 			prepare = con.prepareStatement("delete from employee where emp_id = ?");
-			prepare.setInt(1, 2);;
+			prepare.setInt(1, id);
 			prepare.executeUpdate();
+		
 		} 
 		catch (SQLException e) 
 		{
@@ -94,13 +85,19 @@ public class EmployeeServiceDBImpl implements EmployeeService
 	@Override
 	public Boolean updateEmployee(Employee emp) 
 	{
-		if(getEmployee(emp.getId())==null)
+		con = DBConnection.getConnection();
+		try 
 		{
-			return false;
+			prepare = con.prepareStatement("update employee set emp_salary = 5000 where emp_id = ?");
+			prepare.setInt(1, emp.getId());
+			prepare.executeUpdate();
 		}
-		empdetails.remove(emp.getId());
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		empdetails.add(emp);
 		return true;
 	}
 
@@ -109,6 +106,20 @@ public class EmployeeServiceDBImpl implements EmployeeService
 	@Override
 	public List<Employee> getAllEmployees() 
 	{
+		con = DBConnection.getConnection();
+		
+		try 
+		{
+			prepare = con.prepareStatement("select * from employee");
+			prepare.executeUpdate();
+		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		List<Employee> list; 		
 		
 		return empdetails;
 	}
@@ -120,13 +131,32 @@ public class EmployeeServiceDBImpl implements EmployeeService
 	{
 		
 		ArrayList<Employee> empdetailssalary = new ArrayList<Employee>();
-		for(Employee emp:empdetails)
+		/*for(Employee emp:empdetails)
 		{
 			if(emp.getSalary()==salary)
 			{
 				empdetailssalary.add(emp);
 			}
+		}*/
+		
+		
+		con = DBConnection.getConnection();
+		
+		try 
+		{
+			prepare = con.prepareStatement("select * from employee where emp_salary = ?");
+			prepare.setInt(1, salary);
+			prepare.executeUpdate();
+			
+			
 		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		
 		return empdetailssalary;
 	}
 	
@@ -137,15 +167,36 @@ public class EmployeeServiceDBImpl implements EmployeeService
 	{
 		//ArrayList<Employee> employee = empdetails;
 		ArrayList<Employee> empdetailsminmax = new ArrayList<Employee>();
-		
+		/*
 		for(Employee emp:empdetails)
 		{
 			if((emp.getSalary()>=minSalary)&&(emp.getSalary()<=maxSalary))
 			{
 				empdetailsminmax.add(emp); 
 			}
-		}
+		}	
+		*/
+		
 
+		con = DBConnection.getConnection();
+		
+		try 
+		{
+			prepare = con.prepareStatement("select * from employee where emp_salary >= ? and emp_salary <= ?");
+			prepare.setInt(1, minSalary);
+			prepare.setInt(2, maxSalary);
+			prepare.executeUpdate();
+			
+			
+		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 		return empdetailsminmax;
 	}
 
@@ -154,11 +205,27 @@ public class EmployeeServiceDBImpl implements EmployeeService
 	@Override
 	public void display(List<Employee> list) 
 	{
-		for(Employee emp: list)
+		/*for(Employee emp: list)
 		{
 			
 			display(emp);
+		}*/
+		
+		con = DBConnection.getConnection();
+		
+		try 
+		{
+			prepare = con.prepareStatement("select emp_id from employee");
+			prepare.executeUpdate();
+						
 		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 	
 	
@@ -185,15 +252,32 @@ public class EmployeeServiceDBImpl implements EmployeeService
 
 
 	@Override
-	public List<Employee> getAllEmployeesByDept(int deptID) {
+	public List<Employee> getAllEmployeesByDept(int deptID) 
+	{
 		List<Employee> deptEmployees = new  ArrayList<Employee>();
-		for(Employee emp:empdetails)
+	/*	for(Employee emp:empdetails)
 		{
 			if(emp.getDepartment()==deptID)
 			{
 				deptEmployees.add(emp);
 			}
+		}*/
+		
+		con = DBConnection.getConnection();
+		try 
+		{
+			prepare = con.prepareStatement("select * from employee where dept_id = ?");
+			prepare.setInt(1, deptID);
+			prepare.executeUpdate();
+						
 		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return deptEmployees;
 
 		

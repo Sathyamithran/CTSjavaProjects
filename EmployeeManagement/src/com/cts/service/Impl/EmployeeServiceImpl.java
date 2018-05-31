@@ -2,7 +2,9 @@ package com.cts.service.Impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import com.cts.service.EmployeeService;
 
 public class EmployeeServiceImpl implements EmployeeService 
 {	Connection con;
+	Statement statement;
 	PreparedStatement prepare;
 	
 	ArrayList<Employee> empdetails = new ArrayList<Employee>();
@@ -131,11 +134,24 @@ public class EmployeeServiceImpl implements EmployeeService
 	public List<Employee> getAllEmployees() 
 	{
 		con = DBConnection.getConnection();
-		
+		ResultSet resultset;
+		Employee emp ;
+		List<Employee> emplist = new ArrayList<Employee>();
 		try 
 		{
-			prepare = con.prepareStatement("select * from employee");
-			prepare.executeUpdate();
+			statement = con.createStatement();
+			resultset = statement.executeQuery("select * from employee");
+			while(resultset.next())
+			{
+				emp = new Employee();
+				emp.setId(resultset.getInt(1));
+				emp.setName(resultset.getString(2));
+				emp.setSalary(resultset.getInt(3));
+				emp.setDepartment(resultset.getInt(4));
+				
+				
+				emplist.add(emp);
+			}
 		}
 		catch (SQLException e) 
 		{
@@ -146,7 +162,7 @@ public class EmployeeServiceImpl implements EmployeeService
 	
 		
 		
-		return empdetails;
+		return emplist;
 	}
 
 	
@@ -155,7 +171,7 @@ public class EmployeeServiceImpl implements EmployeeService
 	public List<Employee> getAllEmployees(int salary) 
 	{
 		
-		ArrayList<Employee> empdetailssalary = new ArrayList<Employee>();
+		/*ArrayList<Employee> empdetailssalary = new ArrayList<Employee>();*/
 		/*for(Employee emp:empdetails)
 		{
 			if(emp.getSalary()==salary)
@@ -164,7 +180,7 @@ public class EmployeeServiceImpl implements EmployeeService
 			}
 		}*/
 		
-		
+		/*
 		con = DBConnection.getConnection();
 		
 		try 
@@ -180,9 +196,43 @@ public class EmployeeServiceImpl implements EmployeeService
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/	
+				
+
+		con = DBConnection.getConnection();
+		ResultSet resultset;
+		Employee emp ;
+		List<Employee> emplist = new ArrayList<Employee>();
+		try 
+		{
+			prepare = con.prepareStatement("select * from employee where emp_salary = ?");
+			prepare.setInt(1, salary);
+			prepare.executeQuery();
 			
+			
+			while(((ResultSet) prepare).next())
+			{
+				emp = new Employee();
+				emp.setId(((ResultSet) prepare).getInt(1));
+				emp.setName(((ResultSet) prepare).getString(2));
+				emp.setSalary(((ResultSet) prepare).getInt(3));
+				emp.setDepartment(((ResultSet) prepare).getInt(4));
+				
+				
+				emplist.add(emp);
+			}
+		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		return empdetailssalary;
+	
+		
+		
+		return emplist;
+		
 	}
 	
 
@@ -230,27 +280,12 @@ public class EmployeeServiceImpl implements EmployeeService
 	@Override
 	public void display(List<Employee> list) 
 	{
-		/*for(Employee emp: list)
+		for(Employee emp: list)
 		{
 			
 			display(emp);
-		}*/
-		
-		con = DBConnection.getConnection();
-		
-		try 
-		{
-			prepare = con.prepareStatement("select emp_id from employee");
-			prepare.executeUpdate();
-						
 		}
-		catch (SQLException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
+			
 	}
 	
 	
@@ -264,6 +299,9 @@ public class EmployeeServiceImpl implements EmployeeService
 		}
 		
 	}
+
+	
+	
 	
 	//display method
 	@Override
