@@ -10,31 +10,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cts.model.Employee;
+
+
 import com.cts.service.EmployeeService;
 import com.cts.service.Impl.EmployeeServiceImpl;
 
 /**
- * Servlet implementation class EmployeeController
+ * Servlet implementation class LoginController
  */
-@WebServlet("/EmployeeController")
-public class EmployeeController extends HttpServlet 
-{
+@WebServlet("/LoginController")
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public EmployeeController() 
-    {
+    public LoginController() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
@@ -45,39 +44,33 @@ public class EmployeeController extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		
+		String userid = request.getParameter("userid");
+		String userpassword = request.getParameter("userpassword");
 		
-		
-		int id = Integer.parseInt(request.getParameter("id"));
-		String  name = request.getParameter("name");
-		int  salary = Integer.parseInt(request.getParameter("salary"));
-		int  deptid = Integer.parseInt(request.getParameter("deptid"));
-			
-		EmployeeService empservice = new EmployeeServiceImpl();
-		Employee emp = new Employee(id,name,salary,deptid);
-		
-		empservice.addEmployee(emp);
+		EmployeeService employeeservice = new EmployeeServiceImpl();
 		
 		RequestDispatcher dispatcher;
-		
-		
-		if(empservice.addEmployee(emp))
+		if(employeeservice.validate(userid, userpassword))
 		{
-			dispatcher = request.getRequestDispatcher("success.html");
+			dispatcher = request.getRequestDispatcher("home.jsp");
+			request.setAttribute("name", "sathya");
 			dispatcher.forward(request, response);
 		}
 		else
 		{
-			dispatcher = request.getRequestDispatcher("employee.html");
+			dispatcher = request.getRequestDispatcher("login.jsp");
 			PrintWriter writer = response.getWriter();
-			writer.append("Invalid credentials....please enter again");
+			writer.append("Invalid credentials");
 			dispatcher.include(request, response);
+			
 		}
 		
 	}
 
-	private void validate(String username, String userpassword) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
+
+
+
+
+
+
