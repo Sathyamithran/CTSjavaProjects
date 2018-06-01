@@ -3,13 +3,16 @@ package com.cts.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.corba.se.spi.protocol.RequestDispatcherRegistry;
+import com.cts.model.Employee;
+import com.cts.service.EmployeeService;
+import com.cts.service.Impl.EmployeeServiceImpl;
 
 /**
  * Servlet implementation class EmployeeController
@@ -46,13 +49,14 @@ public class EmployeeController extends HttpServlet
 		int  salary = Integer.parseInt(request.getParameter("salary"));
 		int  deptid = Integer.parseInt(request.getParameter("deptid"));
 		
-		EmployeeService empservice = new EmployeDRServiceImpl();
-		Employee emp = new Employee()id,name,salary,deptid);
+		EmployeeService empservice = new EmployeeServiceImpl();
+		Employee emp = new Employee(id,name,salary,deptid);
 		
 		empservice.addEmployee(emp);
 		
 		RequestDispatcher dispatcher;
-		if(id = 100 && name.equals("niit"))
+		
+		if(id == 100)&&(name.equals("niit"))
 		{
 			dispatcher = request.getRequestDispatcher("sucess.html");
 			dispatcher.forward(request, response);
