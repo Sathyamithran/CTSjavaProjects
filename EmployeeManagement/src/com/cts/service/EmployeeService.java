@@ -19,6 +19,6 @@ public interface EmployeeService
 	public void display(List<Employee> empsalarylist);
 	public void display(Employee emp);
 	public void display();
-	
+	public boolean validate(String username,String password);
 
 }

@@ -345,5 +345,19 @@ public class EmployeeServiceImpl implements EmployeeService
 
 		
 	}
+
+
+	@Override
+	public boolean validate(String username, String password) 
+	{
+		if(username.equals("niit")&&password.equals("niit"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 }
