@@ -1,7 +1,7 @@
 DB queries
 
 DDL--------------
-
+//user proper naming convetion and meaning full names for table, field etc.,
 //create a table department
 create table sample_department (dept_id number primary key,dept_name varchar2(30))
 
@@ -60,22 +60,25 @@ select * from sample_employee where length(emp_name)=5
 select emp_name from sample_employee where month(hiredate)=09
 
 // Fetch all the employees who are having 4 digits salary.
+//can use length function
 select * from sample_employee where emp_salary between 1000 and 9999
 
 // Fetch all the employees who are belongs to particular department name;
 select * from sample_employee where emp_dept_id = 102
 
 
-// Fetch all the employees who‘s salary between from amount1 and amount2.
+// Fetch all the employees whoâ€˜s salary between from amount1 and amount2.
 select * from sample_employee where emp_salary between 3000 and 8000
 
 // Fetch all the employees from given 3 departments
+//can use in operator
 select * from sample_employee where emp_dept_id=102 or emp_dept_id=101
 
 //Fetch all the employees who salary more than a particular employee( name= ram)
 select emp_name,job from sample_employee where job=(select job from sample_employee where emp_name='sam')
 
-//Fetch all the employees who’s job is same as a particular employee( name= ram)
+//Fetch all the employees whoâ€™s job is same as a particular employee( name= ram)
+//same as, not greter than ram salary.
 select emp_name,emp_salary from sample_employee where emp_salary>(select emp_salary from sample_employee where emp_name='sarav')
 
 // Fetch all the employees who are senior to a particular employee( name= ram)
