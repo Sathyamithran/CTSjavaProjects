@@ -1,0 +1,88 @@
+DB queries
+
+DDL--------------
+
+//create a table department
+create table sample_department (dept_id number primary key,dept_name varchar2(30))
+
+//create a table employee
+create table sample_employee (emp_id number primary key,emp_name varchar2(30),emp_salary number,emp_dept_id number references sample_department(dept_id))
+
+//add a column location in the sample_department
+alter table sample_department add location varchar(20)
+
+//add columns job,manager hiredate in the sample_department
+alter table sample_employee add (job varchar2(30),manager varchar2(20),hiredate date)
+
+DML---------------
+
+//update programming as job for all the employees
+update sample_employee set job = 'programming'
+
+//update manager name as don for all the employee
+update sample_employee set manager = 'don'
+
+//increase salary by 10% for particular employee
+update sample_employee set emp_salary= emp_salary + ((emp_salary*10)/100) where emp_id=3
+
+//increase salary of all employee by 10% for particular department
+update sample_employee set emp_salary= emp_salary + ((emp_salary*10)/100) where emp_dept_id=102
+
+FETCH------------
+
+//fetch all the employee from the tables
+select * from sample_employee
+
+//fetch all the department from the table
+select * from sample_department
+
+// Fetch all the employees  order by salary
+select * from sample_employee order by emp_salary asc|desc
+
+// Fetch all the employees  who are getting salary > some amount
+select emp_name from employee where emp_salary>5000
+
+//Fetch all the employees , no_of days worked from Employee table.
+select emp_name,curdate()-hiredate from sample_employee
+				or
+select emp_name,datediff(day,hiredate,curdate()) as datediff from sample_employee
+
+// Fetch all the employees details whose name starting with some character 
+select * from sample_employee where emp_name like 's%'
+
+//Fetch all the employees details whose name starting with some character and ending with some other character
+select * from sample_employee where emp_name like 's%m'
+
+// Fetch all the employees details whose name starting with some character and exactly having the length( say 5)
+select * from sample_employee where length(emp_name)=5
+
+// Fetch all the employess who joined in a particular month.
+select emp_name from sample_employee where month(hiredate)=09
+
+// Fetch all the employees who are having 4 digits salary.
+select * from sample_employee where emp_salary between 1000 and 9999
+
+// Fetch all the employees who are belongs to particular department name;
+select * from sample_employee where emp_dept_id = 102
+
+
+// Fetch all the employees who‘s salary between from amount1 and amount2.
+select * from sample_employee where emp_salary between 3000 and 8000
+
+// Fetch all the employees from given 3 departments
+select * from sample_employee where emp_dept_id=102 or emp_dept_id=101
+
+//Fetch all the employees who salary more than a particular employee( name= ram)
+select emp_name,job from sample_employee where job=(select job from sample_employee where emp_name='sam')
+
+//Fetch all the employees who’s job is same as a particular employee( name= ram)
+select emp_name,emp_salary from sample_employee where emp_salary>(select emp_salary from sample_employee where emp_name='sarav')
+
+// Fetch all the employees who are senior to a particular employee( name= ram)
+select emp_name,hiredate from sample_employee where hiredate<(select hiredate from sample_employee where emp_name='xav')
+
+// Fetch the highest paid employee details.
+select * from sample_employee where emp_salary=(select max(emp_salary) from sample_employee)
+
+// Fetch the highest paid employee in particular department
+select * from sample_employee where emp_salary=(select max(emp_salary) from sample_employee where emp_dept_id=102)
